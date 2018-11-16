@@ -1,9 +1,10 @@
 <template>
 	<v-app dark>
 		
-		<login></login>
 		<index></index>
+		<login></login>
 		<mostruario></mostruario>
+		
 	</v-app>
 </template>
 
