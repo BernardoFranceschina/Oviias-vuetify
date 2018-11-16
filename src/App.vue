@@ -1,16 +1,25 @@
 <template>
-	<login></login>
+	<v-app dark>
+		
+		<login></login>
+		<index></index>
+		<mostruario></mostruario>
+	</v-app>
 </template>
 
 <script>
 	import login from "./components/login.vue"
+	import Index from "./components/index.vue"
+	import mostruario from "./components/mostruario.vue"
 	export default {
-		components:{
-			login
+		components: {
+			login,
+			Index,
+			mostruario
 		},
 		data() {
 			return {
-	
+				
 			}
 		},
 	}
