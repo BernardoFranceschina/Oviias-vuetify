@@ -1,9 +1,9 @@
-<template>	
-    <v-app dark>
+<template>
+	<v-app dark>
 		<v-toolbar>
 			<v-toolbar-title>Oviia's Departament Store</v-toolbar-title>
 		</v-toolbar>
-		<v-img src="public/img1.jpg" height="633">
+		<v-img src="public/img1.jpg" height="597">
 			<v-layout justify-end>
 				<v-flex mx-4 mt-4 xs12 sm12 md5>
 					<v-card>
@@ -36,6 +36,11 @@
 				</v-flex>
 			</v-layout>
 		</v-img>
+		<v-footer class="pa-3">
+			Bernardo C. Franceschina & Erik P. S. Borela
+			<v-spacer></v-spacer>
+			<div>&copy; {{ new Date().getFullYear() }}</div>
+		</v-footer>
 	</v-app>
 </template>
 
@@ -51,3 +56,4 @@
 		},
 	}
 </script>
+

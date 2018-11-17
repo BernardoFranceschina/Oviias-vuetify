@@ -1,0 +1,57 @@
+
+<template>
+	<v-app>
+	
+		<v-toolbar>
+			<v-toolbar-title>Oviia's Departament Store</v-toolbar-title>
+			<v-spacer></v-spacer>
+			<v-btn icon>
+				<router-link to="/carinho" class="white--text">
+					<v-icon>mdi-cart</v-icon>
+				</router-link>
+			</v-btn>
+			<v-btn icon>
+				<router-link to="/login" class="white--text">
+					<v-icon>mdi-logout</v-icon>
+				</router-link>
+			</v-btn>
+		</v-toolbar>
+	
+		<v-layout row class="ma-5">
+			<v-flex xs4>
+				<v-img max-width="350" max-height="350" src="public/produto1.jpg"></v-img>
+			</v-flex>
+			<v-layout column>
+				<h3 class="display-1">{{ prod.nomeProd }}</h3>
+				<h6 class="subheading">{{ prod.preco }}</h6>
+				<br>
+				<h4 class="title">Descrição do produto</h4>
+				<v-spacer></v-spacer>
+				<v-flex offset-xs8>
+					<v-btn>Adicionar ao carinho</v-btn>
+				</v-flex>
+			</v-layout>
+		</v-layout>
+	
+		<v-footer class="pa-3">
+			Bernardo C. Franceschina & Erik P. S. Borela
+			<v-spacer></v-spacer>
+			<div>&copy; {{ new Date().getFullYear() }}</div>
+		</v-footer>
+	
+	</v-app>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				prod: {
+					nomeProd: 'Nome do produto',
+					preco: 'Preço',
+					desc: 'Descrição'
+				}
+			}
+		}
+	}
+</script>

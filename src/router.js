@@ -1,0 +1,39 @@
+import Vue from 'vue'
+import Router from 'vue-router'
+import login from './components/login.vue'
+import mostruario from './components/mostruario.vue'
+import index from './components/index.vue'
+import carinho from './components/carinho.vue'
+import umProd from './components/umProd.vue'
+
+Vue.use(Router)
+
+export default new Router({
+  routes: [
+    {
+      path: '/login',
+      name: 'login',
+      component: login
+    },
+    {
+      path: '/mostruario',
+      name: 'mostruario',
+      component: mostruario
+    },
+    {
+      path: '/',
+      name: 'index',
+      component: index
+    },
+    {
+      path: '/carinho',
+      name: 'carinho',
+      component: carinho
+    },
+    {
+      path: '/mostruario/produto',
+      name: 'produto',
+      component: umProd
+    }
+  ]
+})
