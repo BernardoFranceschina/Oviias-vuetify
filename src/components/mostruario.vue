@@ -17,12 +17,12 @@
 		<v-container fluid grid-list-lg fill-height style="min-height: 434px">
 			<v-fade-transition mode="out-in">
 				<v-layout wrap>
-					<v-flex xs4>
-						<v-card>
+					<v-flex xs4 v-for="(prod, i) in prods" :key="i">
+						<v-card >
 							<v-card-title class="title">
-								{{ prod.nomeProd }}
+								{{ prod.nome }}
 							</v-card-title>
-							<router-link to="/mostruario/produto" class="white--text">
+							<router-link :to="`/mostruario/produto?key=${prod['.key']}`" class="white--text">
 								<v-img src="https://picsum.photos/350/165?random" height="125" class="grey darken-4"></v-img>
 							</router-link>
 							<v-card-title class="title">
@@ -48,14 +48,23 @@
 	export default {
 		data() {
 			return {
-				prod: {
-					nomeProd: 'Nome do produto',
-					preco: 'Preço',
-					desc: 'Descrição',
-					id: ''
-				}
+				prods: [],
+
+				isLogged: false,
+				user: ""
 			}
 		},
+
+		created() {
+			firebase.auth().onAuthStateChanged(user => {
+				if (user) {
+					this.isLogged = true;
+					this.user = user;
+				}
+			});
+
+			this.$bindAsArray("prods", firebase.database().ref("prods"));
+		}
 	}
 </script>
 

@@ -21,10 +21,10 @@
 				<v-img max-width="350" max-height="350" src="public/produto1.jpg"></v-img>
 			</v-flex>
 			<v-layout column>
-				<h3 class="display-1">{{ prod.nomeProd }}</h3>
+				<h3 class="display-1">{{ prod.nome }}</h3>
 				<h6 class="subheading">{{ prod.preco }}</h6>
 				<br>
-				<h4 class="title">{{ prod.desc }}</h4>
+				<h4 class="title"> {{ prod.descricao }} </h4>
 				<v-spacer></v-spacer>
 				<v-flex offset-xs8>
 					<v-btn>Adicionar ao carinho</v-btn>
@@ -44,13 +44,24 @@
 	export default {
 		data() {
 			return {
-				prod: {
-					nomeProd: 'Nome do produto',
-					preco: 'Preço',
-					desc: 'Descrição',
-					id: ''
-				}
+				DB: [],
+				prod: {}
 			}
+		},
+
+		created() {
+			const key = this.$route.query.key;
+			
+			this.$bindAsArray("DB", firebase.database().ref("prods"), null, () => {
+				for (let i in this.DB) {
+					if (this.DB[i]['.key'] === key) {
+						this.prod = this.DB[i];
+						return
+					}
+				}
+			});
 		}
+
+	
 	}
 </script>

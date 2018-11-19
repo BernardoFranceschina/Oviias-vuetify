@@ -6,6 +6,7 @@ import index from './components/index.vue';
 import carinho from './components/carinho.vue';
 import umProd from './components/umProd.vue';
 import pagamento from './components/pagamento.vue';
+import addProd from "./components/addProd.vue";
 
 Vue.use(Router)
 
@@ -40,6 +41,11 @@ export default new Router({
       path: '/carinho/pagamento',
       name: 'pagamento',
       component: pagamento
+    },
+    {
+      path: "/addProd",
+      name: "addProd",
+      component: addProd
     }
   ]
 })
