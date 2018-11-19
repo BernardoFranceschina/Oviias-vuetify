@@ -51,7 +51,8 @@
 				prod: {
 					nomeProd: 'Nome do produto',
 					preco: 'Preço',
-					desc: 'Descrição'
+					desc: 'Descrição',
+					id: ''
 				}
 			}
 		},

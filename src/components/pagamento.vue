@@ -1,5 +1,5 @@
 <template>
-	<v-app>
+	<v-app dark>
 	
 		<v-toolbar>
 			<v-toolbar-title>Oviia's Departament Store</v-toolbar-title>
@@ -22,15 +22,9 @@
 			<v-divider></v-divider>
 			<v-flex xs4>
 				<v-form ref="form" v-model="valid" lazy-validation>
-					<v-text-field v-model="name" :rules="nameRules" label="Endereço" required></v-text-field>
-					<v-text-field v-model="cartao" type="number" :rules="cardRules" maxlength="16" :counter="16" label="Número do cartão de credito" required></v-text-field>
-					<v-text-field v-model="cartaoNome" type="text" :rules="[v => !!v || 'Informe o nome do titular do cartão']" label="Nome do titular" required></v-text-field>
-					<v-text-field type="number" maxlength="4" :counter="4" :rules="[v => !!v || 'Informe a senha de segurança']" label="Senha de segurança" required></v-text-field>
-					<v-checkbox v-model="checkbox" :rules="[v => !!v || 'Verifique as informações']" label="As informações foram preenchidas corretamente?" required></v-checkbox>
-					<v-btn :disabled="!valid" @click="submit">
-						Confirmar
-					</v-btn>
-					<v-btn @click="clear">Recomeçar</v-btn>
+					<v-text-field label="Endereço" v-model="usuario.endereco"></v-text-field>
+					<v-text-field label="Nome do titular do cartão" v-model="usuario.nomeCartao"></v-text-field>
+					<v-text-field label="Número do cartão" v-model="usuario.nmrCartao"></v-text-field>
 				</v-form>
 			</v-flex>
 		</v-container>
@@ -45,40 +39,16 @@
 	export default {
 		data() {
 			return {
-				valid: true,
-				name: '',
-				nameRules: [
-					v => !!v || 'Informe o endereço',
-				],
-				cartao: '',
-				cartaoNome: '',
-				cardRules: [
-					v => !!v || 'Informe o numero  do cartão',
-				],
-				select: null,
-				items: [
-					'Item 1',
-					'Item 2',
-					'Item 3',
-					'Item 4'
-				],
-				checkbox: false
+				usuario: {
+					endereco: '',
+					nomeCartao: '',
+					nmrCartao: '',
+
+				}
 			}
 		},
 		methods: {
-			submit() {
-				if (this.$refs.form.validate()) {
-					axios.post('/api/submit', {
-						name: this.name,
-						email: this.email,
-						select: this.select,
-						checkbox: this.checkbox
-					})
-				}
-			},
-			clear() {
-				this.$refs.form.reset()
-			}
+			
 		}
 	}
 </script>
