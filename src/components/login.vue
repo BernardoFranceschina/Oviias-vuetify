@@ -29,15 +29,14 @@
 								<v-icon>mdi-google</v-icon>⠀Google
 							</v-btn>
 							<v-spacer></v-spacer>
-							<v-btn color="blue darken-1" flat>Cadastrar</v-btn>
-							<v-btn color="blue darken-1" flat>Entrar</v-btn>
+							<v-btn flat>Cadastrar</v-btn>
+							<v-btn flat>Entrar</v-btn>
 						</v-card-actions>
 					</v-card>
 				</v-flex>
 			</v-layout>
 		</v-img>
 		<v-footer class="pa-3">
-			Bernardo C. Franceschina & Erik P. S. Borela
 			<v-spacer></v-spacer>
 			<div>&copy; {{ new Date().getFullYear() }}</div>
 		</v-footer>

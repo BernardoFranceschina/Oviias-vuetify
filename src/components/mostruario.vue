@@ -38,7 +38,6 @@
 			</v-fade-transition>
 		</v-container>
 		<v-footer class="pa-3">
-			Bernardo C. Franceschina & Erik P. S. Borela
 			<v-spacer></v-spacer>
 			<div>&copy; {{ new Date().getFullYear() }}</div>
 		</v-footer>

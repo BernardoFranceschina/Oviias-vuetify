@@ -1,8 +1,14 @@
+<style>
+	* {
+		text-decoration: none;
+	}
+</style>
+
 <template>
-	<v-app dark>
-		
+	<v-app>
+	
 		<router-view></router-view>
-		
+	
 	</v-app>
 </template>
 
@@ -10,8 +16,8 @@
 	export default {
 		data() {
 			return {
-				
-			}
+		
 		}
 	}
+}
 </script>

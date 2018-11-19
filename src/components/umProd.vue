@@ -1,6 +1,5 @@
-
 <template>
-	<v-app>
+	<v-app dark>
 	
 		<v-toolbar>
 			<v-toolbar-title>Oviia's Departament Store</v-toolbar-title>
@@ -25,7 +24,7 @@
 				<h3 class="display-1">{{ prod.nomeProd }}</h3>
 				<h6 class="subheading">{{ prod.preco }}</h6>
 				<br>
-				<h4 class="title">Descrição do produto</h4>
+				<h4 class="title">{{ prod.desc }}</h4>
 				<v-spacer></v-spacer>
 				<v-flex offset-xs8>
 					<v-btn>Adicionar ao carinho</v-btn>
@@ -34,7 +33,6 @@
 		</v-layout>
 	
 		<v-footer class="pa-3">
-			Bernardo C. Franceschina & Erik P. S. Borela
 			<v-spacer></v-spacer>
 			<div>&copy; {{ new Date().getFullYear() }}</div>
 		</v-footer>

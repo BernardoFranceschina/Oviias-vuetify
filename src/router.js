@@ -5,6 +5,7 @@ import mostruario from './components/mostruario.vue'
 import index from './components/index.vue'
 import carinho from './components/carinho.vue'
 import umProd from './components/umProd.vue'
+import pagamento from './components/pagamento.vue'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/mostruario/produto',
       name: 'produto',
       component: umProd
+    },
+    {
+      path: '/carinho/pagamento',
+      name: 'pagamento',
+      component: pagamento
     }
   ]
 })
