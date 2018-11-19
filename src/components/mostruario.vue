@@ -9,7 +9,7 @@
 							<v-img v-else dark :src="user.photoURL"></v-img>
 						</v-avatar>
 						<v-list-tile-title class="title">
-							<span>⠀{{user ? user.display :"anom"}}</span>
+							<span>⠀{{user ? user.display : "anom"}}</span>
 						</v-list-tile-title>
 					</v-list-tile>
 				</v-list>
@@ -67,7 +67,7 @@
 								{{ prod.nome }}
 							</v-card-title>
 							<router-link :to="`/mostruario/produto?key=${prod['.key']}`" class="white--text">
-								<v-img src="https://picsum.photos/350/165?random" height="125" class="grey darken-4"></v-img>
+								<v-img src="https://picsum.photos/350/165?random" contain height="125" class="grey darken-4"></v-img>
 							</router-link>
 							<v-card-title class="title">
 								<span class="subheading">R$ {{ prod.preco }}</span>
