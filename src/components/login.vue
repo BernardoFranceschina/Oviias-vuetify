@@ -25,12 +25,12 @@
 							</v-container>
 						</v-card-text>
 						<v-card-actions>
-							<v-btn flat>
+							<v-btn flat @click="googleLogin()">
 								<v-icon>mdi-google</v-icon>⠀Google
 							</v-btn>
 							<v-spacer></v-spacer>
-							<v-btn flat>Cadastrar</v-btn>
-							<v-btn flat>Entrar</v-btn>
+							<v-btn flat @click="signup()">Cadastrar</v-btn>
+							<v-btn flat @click="login()">Entrar</v-btn>
 						</v-card-actions>
 					</v-card>
 				</v-flex>
@@ -45,6 +45,8 @@
 
 <script>
 	export default {
+		name: "login",
+
 		data() {
 			return {
 				usuarios: {
@@ -53,6 +55,38 @@
 				}
 			}
 		},
+
+		created() {
+			firebase.auth().onAuthStateChanged(user => {
+				if (user) {
+					
+					window.location.replace("/#/")
+				}
+			})
+		},
+
+		methods: {
+			googleLogin() {
+
+				let provider = new firebase.auth.GoogleAuthProvider();
+                firebase.auth().signInWithRedirect(provider).catch(e => {
+                    alert(e.code);
+                })
+			},
+
+			login() {
+				firebase.auth().signInWithEmailAndPassword(this.emailInput, this.passwordInput).catch(e => {
+                    alert(e.code);
+                })
+			},
+
+			signup() {
+				firebase.auth().createUserWithEmailAndPassword(this.emailInput, this.passwordInput).catch(e => {
+                    alert(e.code);
+                })
+			},
+
+ 		}
 	}
 </script>
 

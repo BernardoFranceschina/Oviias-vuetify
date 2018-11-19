@@ -1,12 +1,16 @@
-import Vue from 'vue'
-import App from './App.vue'
-import Vuetify from 'vuetify'
-import router from './router'
-import 'vuetify/dist/vuetify.css'
+import Vue from 'vue';
+import App from './App.vue';
+import Vuetify from 'vuetify';
+import router from './router';
+import 'vuetify/dist/vuetify.css';
 
-Vue.use(Vuetify)
+import vuefire from "vuefire";
+
+Vue.use(vuefire);
+
+Vue.use(Vuetify);
 
 new Vue({
   router,
   render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');

@@ -12,6 +12,7 @@
     "npm": "^6.4.1",
     "vue": "^2.5.3",
     "vue-router": "^3.0.1",
+    "vuefire": "^1.4.5",
     "vuetify": "^1.0.0"
   },
   "devDependencies": {

@@ -3,6 +3,7 @@
 		<v-toolbar>
 			<v-toolbar-title>Oviia's Departament Store</v-toolbar-title>
 			<v-spacer></v-spacer>
+			<span>{{user ? user.displayName:"anom"}}</span>
 			<v-toolbar-items>
 				<v-btn icon>
 					<router-link to="/login" class="white--text">
@@ -34,9 +35,19 @@
 	export default {
 		data() {
 			return {
-	
+				user: {
+					"displayName": "anom"
+				},
 			}
-		}
+		},
+
+		created() {
+			firebase.auth().onAuthStateChanged(user => {
+				this.user = user;
+			})
+		},
+
+
 	}
 </script>
 
