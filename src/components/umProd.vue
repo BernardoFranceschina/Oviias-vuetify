@@ -16,23 +16,23 @@
 				</v-list>
 			</v-toolbar>
 			<v-divider></v-divider>
-			
+	
 			<v-list two-line subheader>
 				<v-subheader>Nossa loja:</v-subheader>
 				<v-list-tile avatar>
 					<router-link class="white--text" to="/mostruario">
-					<v-list-tile-content>
-						<v-list-tile-title>Mostruário</v-list-tile-title>
-						<v-list-tile-sub-title>Confira nosso catálogo de produtos</v-list-tile-sub-title>
-					</v-list-tile-content>
+						<v-list-tile-content>
+							<v-list-tile-title>Mostruário</v-list-tile-title>
+							<v-list-tile-sub-title>Confira nosso catálogo de produtos</v-list-tile-sub-title>
+						</v-list-tile-content>
 					</router-link>
 				</v-list-tile>
 				<v-list-tile avatar>
 					<router-link class="white--text" to="/carinho">
-					<v-list-tile-content>
-						<v-list-tile-title>Carinho</v-list-tile-title>
-						<v-list-tile-sub-title>Veja como está suas compras</v-list-tile-sub-title>
-					</v-list-tile-content>
+						<v-list-tile-content>
+							<v-list-tile-title>Carinho</v-list-tile-title>
+							<v-list-tile-sub-title>Veja como está suas compras</v-list-tile-sub-title>
+						</v-list-tile-content>
 					</router-link>
 				</v-list-tile>
 			</v-list>
@@ -82,14 +82,24 @@
 	export default {
 		data() {
 			return {
+				drawer: false,
+				isLogged: false,
+				user: {
+					"displayName": "anom",
+				},
 				DB: [],
 				prod: {}
 			}
 		},
-
+	
 		created() {
+			firebase.auth().onAuthStateChanged(user => {
+				this.user = user;
+				if (this.user) this.isLogged = true;
+				//redirecionar pra pagina de login
+			})
 			const key = this.$route.query.key;
-			
+	
 			this.$bindAsArray("DB", firebase.database().ref("prods"), null, () => {
 				for (let i in this.DB) {
 					if (this.DB[i]['.key'] === key) {
@@ -99,7 +109,7 @@
 				}
 			});
 		}
-
+	
 	
 	}
 </script>

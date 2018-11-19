@@ -42,7 +42,7 @@
 		<v-toolbar app>
 			<v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
 			<v-toolbar-title>Oviia's Departament Store</v-toolbar-title>
-
+		</v-toolbar>
         <v-container grid-list-xs>
 
             <v-form ref="input_form" v-model="form">  
@@ -84,6 +84,11 @@ export default {
 
     data() {
         return {
+            drawer: false,
+				isLogged: false,
+				user: {
+					"displayName": "anom",
+				},
             input_name: "",
             input_desc: "",
             input_price: "",
@@ -92,6 +97,13 @@ export default {
             form: true
         }
     },
+    created() {
+			firebase.auth().onAuthStateChanged(user => {
+				this.user = user;
+				if (this.user) this.isLogged = true;
+				//redirecionar pra pagina de login
+			})
+		},
 
     methods: {
         addProd() {

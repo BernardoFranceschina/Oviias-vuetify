@@ -16,23 +16,23 @@
 				</v-list>
 			</v-toolbar>
 			<v-divider></v-divider>
-			
+	
 			<v-list two-line subheader>
 				<v-subheader>Nossa loja:</v-subheader>
 				<v-list-tile avatar>
 					<router-link class="white--text" to="/mostruario">
-					<v-list-tile-content>
-						<v-list-tile-title>Mostruário</v-list-tile-title>
-						<v-list-tile-sub-title>Confira nosso catálogo de produtos</v-list-tile-sub-title>
-					</v-list-tile-content>
+						<v-list-tile-content>
+							<v-list-tile-title>Mostruário</v-list-tile-title>
+							<v-list-tile-sub-title>Confira nosso catálogo de produtos</v-list-tile-sub-title>
+						</v-list-tile-content>
 					</router-link>
 				</v-list-tile>
 				<v-list-tile avatar>
 					<router-link class="white--text" to="/carinho">
-					<v-list-tile-content>
-						<v-list-tile-title>Carinho</v-list-tile-title>
-						<v-list-tile-sub-title>Veja como está suas compras</v-list-tile-sub-title>
-					</v-list-tile-content>
+						<v-list-tile-content>
+							<v-list-tile-title>Carinho</v-list-tile-title>
+							<v-list-tile-sub-title>Veja como está suas compras</v-list-tile-sub-title>
+						</v-list-tile-content>
 					</router-link>
 				</v-list-tile>
 			</v-list>
@@ -63,7 +63,7 @@
 					<v-text-field label="Endereço" v-model="usuario.endereco"></v-text-field>
 					<v-text-field label="Nome do titular do cartão" v-model="usuario.nomeCartao"></v-text-field>
 					<v-text-field label="Número do cartão" v-model="usuario.nmrCartao"></v-text-field>
-					
+	
 				</v-form>
 			</v-flex>
 		</v-container>
@@ -82,12 +82,23 @@
 					endereco: '',
 					nomeCartao: '',
 					nmrCartao: '',
-
-				}
+				},
+				drawer: false,
+				isLogged: false,
+				user: {
+					"displayName": "anom",
+				},
 			}
 		},
+		created() {
+			firebase.auth().onAuthStateChanged(user => {
+				this.user = user;
+				if (this.user) this.isLogged = true;
+				//redirecionar pra pagina de login
+			})
+		},
 		methods: {
-			
+	
 		}
 	}
 </script>

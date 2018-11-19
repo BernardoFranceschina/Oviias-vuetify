@@ -15,23 +15,23 @@
 				</v-list>
 			</v-toolbar>
 			<v-divider></v-divider>
-			
+	
 			<v-list two-line subheader>
 				<v-subheader>Nossa loja:</v-subheader>
 				<v-list-tile avatar>
 					<router-link class="white--text" to="/mostruario">
-					<v-list-tile-content>
-						<v-list-tile-title>Mostruário</v-list-tile-title>
-						<v-list-tile-sub-title>Confira nosso catálogo de produtos</v-list-tile-sub-title>
-					</v-list-tile-content>
+						<v-list-tile-content>
+							<v-list-tile-title>Mostruário</v-list-tile-title>
+							<v-list-tile-sub-title>Confira nosso catálogo de produtos</v-list-tile-sub-title>
+						</v-list-tile-content>
 					</router-link>
 				</v-list-tile>
 				<v-list-tile avatar>
 					<router-link class="white--text" to="/carinho">
-					<v-list-tile-content>
-						<v-list-tile-title>Carinho</v-list-tile-title>
-						<v-list-tile-sub-title>Veja como está suas compras</v-list-tile-sub-title>
-					</v-list-tile-content>
+						<v-list-tile-content>
+							<v-list-tile-title>Carinho</v-list-tile-title>
+							<v-list-tile-sub-title>Veja como está suas compras</v-list-tile-sub-title>
+						</v-list-tile-content>
 					</router-link>
 				</v-list-tile>
 			</v-list>
@@ -56,7 +56,7 @@
 			<v-fade-transition mode="out-in">
 				<v-layout wrap>
 					<v-flex xs4 v-for="(prod, i) in prods" :key="i">
-						<v-card >
+						<v-card>
 							<v-card-title class="title">
 								{{ prod.nome }}
 							</v-card-title>
@@ -87,12 +87,14 @@
 		data() {
 			return {
 				prods: [],
-
+				user: {
+					"displayName": "anom",
+				},
+				drawer: false,
 				isLogged: false,
-				user: ""
 			}
 		},
-
+	
 		created() {
 			firebase.auth().onAuthStateChanged(user => {
 				if (user) {
@@ -100,7 +102,7 @@
 					this.user = user;
 				}
 			});
-
+	
 			this.$bindAsArray("prods", firebase.database().ref("prods"));
 		}
 	}
