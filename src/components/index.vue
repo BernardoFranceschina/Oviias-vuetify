@@ -6,8 +6,8 @@
 				<v-list>
 					<v-list-tile>
 						<v-avatar>
-							<v-icon v-if="!isLogged">mdi-spin mdi-account-circle</v-icon>
-							<v-img v-else dark :src="user.photoURL"></v-img>
+							<!-- <v-img v-if="isLogged" dark :src="user.photoURL"></v-img>
+							<v-icon v-else >mdi-spin mdi-account-circle</v-icon> -->
 						</v-avatar>
 						<v-list-tile-title class="title">
 							<span>⠀{{user ? user.displayName:"anom"}}</span>
@@ -43,9 +43,14 @@
 			<v-toolbar-title>Oviia's Departament Store</v-toolbar-title>
 			<v-spacer></v-spacer>
 			<v-toolbar-items>
-				<v-btn icon>
+				<v-btn icon v-if="!isLogged">
 					<router-link to="/login" class="white--text">
-						<v-icon>mdi-login</v-icon>
+						<v-icon>mdi-login</v-icon>	
+					</router-link>
+				</v-btn>
+				<v-btn icon v-else>
+					<router-link to="/login" class="white--text">
+						<v-icon @click="logout()">mdi-logout</v-icon>
 					</router-link>
 				</v-btn>
 			</v-toolbar-items>
@@ -90,6 +95,11 @@
 				if (this.user) this.isLogged = true;
 			})
 		},
+		methods: {
+			logout() {
+				firebase.auth().signOut()
+			}
+		}
 	
 	
 	}

@@ -54,7 +54,13 @@
 			</v-btn>
 		</v-toolbar>
 	
-	
+		<v-layout>
+			<v-flex xs12>
+
+				<!-- conteudo -->
+
+			</v-flex>
+		</v-layout>
 	
 	
 		<v-footer class="pa-3">

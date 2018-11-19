@@ -47,13 +47,18 @@
 					<v-icon>mdi-cart</v-icon>
 				</router-link>
 			</v-btn>
-			<v-btn icon>
+			<v-btn icon v-if="!isLogged">
 				<router-link to="/login" class="white--text">
-					<v-icon>mdi-logout</v-icon>
+					<v-icon>mdi-login</v-icon>	
+				</router-link>
+			</v-btn>
+			<v-btn icon v-else>
+				<router-link class="white--text" to="/login">
+					<v-icon @click="logout()">mdi-logout</v-icon>
 				</router-link>
 			</v-btn>
 		</v-toolbar>
-	
+	<br><br>
 		<v-layout row class="ma-5">
 			<v-flex xs4>
 				<v-img max-width="350" max-height="350" src="public/produto1.jpg"></v-img>
@@ -89,6 +94,11 @@
 				},
 				DB: [],
 				prod: {}
+			}
+		},
+		methods:{
+			logout() {
+				firebase.auth().signOut()
 			}
 		},
 	

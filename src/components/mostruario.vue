@@ -9,7 +9,7 @@
 							<v-img v-else dark :src="user.photoURL"></v-img>
 						</v-avatar>
 						<v-list-tile-title class="title">
-							<span>⠀{{user ? user.displayName:"anom"}}</span>
+							<span>⠀{{user ? user.display :"anom"}}</span>
 						</v-list-tile-title>
 					</v-list-tile>
 				</v-list>
@@ -46,12 +46,18 @@
 					<v-icon>mdi-cart</v-icon>
 				</router-link>
 			</v-btn>
-			<v-btn icon>
+			<v-btn icon v-if="!isLogged">
 				<router-link to="/login" class="white--text">
-					<v-icon>mdi-logout</v-icon>
+					<v-icon>mdi-login</v-icon>	
+				</router-link>
+			</v-btn>
+			<v-btn icon v-else>
+				<router-link class="white--text" to="/login">
+					<v-icon @click="logout()">mdi-logout</v-icon>
 				</router-link>
 			</v-btn>
 		</v-toolbar>
+		<br><br>
 		<v-container fluid grid-list-lg fill-height style="min-height: 434px">
 			<v-fade-transition mode="out-in">
 				<v-layout wrap>
@@ -92,6 +98,11 @@
 				},
 				drawer: false,
 				isLogged: false,
+			}
+		},
+		methods:{
+			logout() {
+				firebase.auth().signOut()
 			}
 		},
 	
