@@ -49,6 +49,7 @@
 
 		data() {
 			return {
+				admin1: false,
 				usuarios: {
 					email: '',
 					senha: '',
@@ -59,7 +60,6 @@
 		created() {
 			firebase.auth().onAuthStateChanged(user => {
 				if (user) {
-					
 					window.location.replace("/#/")
 				}
 			})
@@ -79,8 +79,8 @@
                     alert(e.code);
                 })
 			},
-			logout() {
-				firebase.auth().signOut()
+			signOut() {
+				firebase.auth().signOut();
 			},
 
 			signup() {

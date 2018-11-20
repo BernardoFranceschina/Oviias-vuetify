@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <v-navigation-drawer app v-model="drawer">
+	<div>
+		<v-navigation-drawer app v-model="drawer">
 			<v-toolbar flat>
 				<v-list>
 					<v-list-tile>
@@ -9,7 +9,7 @@
 							<v-img v-else dark :src="user.photoURL"></v-img>
 						</v-avatar>
 						<v-list-tile-title class="title">
-                            <span v-if="isLogged">{{ user.displayName || user.email }}</span>
+							<span v-if="isLogged">&nbsp;{{ user.displayName || user.email }}</span>
 							<span v-else>Não logado</span>
 						</v-list-tile-title>
 					</v-list-tile>
@@ -35,58 +35,78 @@
 						</v-list-tile-content>
 					</router-link>
 				</v-list-tile>
+                <div v-if="administrador2">
+                    <v-list-tile avatar>
+                        <router-link class="white--text" to="/addProd">
+                            <v-list-tile-content>
+                                <v-list-tile-title>Adicionar produtos</v-list-tile-title>
+                                <v-list-tile-sub-title>Apenas ADM's</v-list-tile-sub-title>
+                            </v-list-tile-content>
+                        </router-link>
+                    </v-list-tile>
+                </div>
 			</v-list>
 		</v-navigation-drawer>
-    
-        <v-toolbar>
-            <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
-            <v-toolbar-title>Oviia's Departament Store</v-toolbar-title>
-            <v-spacer></v-spacer>
-    
-            <span v-if="!isLogged">Não Logado</span>
-    
-            <v-btn icon v-if="isLogged">
-                <router-link to="/carinho" class="white--text">
-                    <v-icon>mdi-cart</v-icon>
-                </router-link>
-            </v-btn>
-    
-            <v-btn icon v-if="!isLogged" title="Entrar">
-                <router-link to="/login" class="white--text">
-                    <v-icon>mdi-login</v-icon>
-                </router-link>
-            </v-btn>
-    
-            <v-btn icon v-else @click="signOut()" title="Sair">
-                <v-icon>mdi-logout</v-icon>
-            </v-btn>
-    
-        </v-toolbar>
-    </div>
+	
+		<v-toolbar app>
+			<v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
+			<v-toolbar-title>Oviia's Departament Store</v-toolbar-title>
+			<v-spacer></v-spacer>
+	
+			<span v-if="!isLogged">Não Logado</span>
+	
+			<v-btn icon v-if="isLogged">
+				<router-link to="/carinho" class="white--text">
+					<v-icon>mdi-cart</v-icon>
+				</router-link>
+			</v-btn>
+	
+			<v-btn icon v-if="!isLogged" title="Entrar">
+				<router-link to="/login" class="white--text">
+					<v-icon>mdi-login</v-icon>
+				</router-link>
+			</v-btn>
+	
+			<v-btn icon v-else @click="signOut()" title="Sair">
+				<v-icon>mdi-logout</v-icon>
+			</v-btn>
+	
+		</v-toolbar>
+	</div>
 </template>
 
 <script>
-    export default {
-        name: "mainToolbar",
+	export default {
+		name: "mainToolbar",
         props: ["user"],
-    
-        data() {
-            return {
-                isLogged: false,
-                drawer: false,
-            }
-        },
-    
-        methods: {
-            signOut() {
+        
+		data() {
+			return {
+				administrador2: false,
+				isLogged: false,
+				drawer: false,
+			}
+		},
+	
+		methods: {
+			signOut() {
                 firebase.auth().signOut();
-            }
-        },
-    
-        watch: {
-            user() {
+                this.administrador2 = false;
+			},			
+		},
+        
+		watch: {
+			user() {
                 this.isLogged = !!this.user;
-            }
-        }
-    }
+                if (!this.user) return;
+                if (!this.user.uid) { 
+
+					return;
+				} else if (this.user.uid === "3WCwuGgzE7fCVehpxaFCzfLauVj2" || this.user.uid === "Ag711hRc0lN4sfhxlSf90XCX1PC3") {
+					this.administrador2 = true;
+				}
+            },
+            
+		}
+	}
 </script>

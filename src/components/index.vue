@@ -28,7 +28,6 @@
 <script>
 
 	import mainToolbar from "./mainToolbar.vue"
-
 	export default {
 
 		components: {

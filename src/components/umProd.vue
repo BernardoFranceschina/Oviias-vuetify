@@ -41,11 +41,9 @@
 	import mainToolbar from "./mainToolbar.vue"
 
 	export default {
-
 		components: {
 			mainToolbar
 		},
-
 		data() {
 			return {
 				drawer: false,
@@ -67,7 +65,7 @@
 			}
 		},
 		methods:{
-			logout() {
+			signOut() {
 				firebase.auth().signOut()
 			},
 

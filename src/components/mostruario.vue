@@ -28,14 +28,12 @@
 			</v-fade-transition>
 		</v-container>
 
-
 		<v-snackbar :color="snackParam.color" v-model="snackParam.active" :timeout="snackParam.timeout">
 			{{ snackParam.text }}
 			<router-link to="/login">
 				<v-btn flat>Logar</v-btn>
 			</router-link>
 			<v-btn flat @click.native="snackParam.active = false">Fechar</v-btn>
-
 		</v-snackbar>
 
 
@@ -57,6 +55,7 @@
 
 		data() {
 			return {
+				admin1: false,
 				prods: [],
 				user: {
 					"displayName": "anom",
@@ -74,8 +73,8 @@
 			}
 		},
 		methods:{
-			logout() {
-				firebase.auth().signOut()
+			signOut() {
+				firebase.auth().signOut();
 			}
 		},
 	
