@@ -79,6 +79,9 @@
                     alert(e.code);
                 })
 			},
+			logout() {
+				firebase.auth().signOut()
+			},
 
 			signup() {
 				firebase.auth().createUserWithEmailAndPassword(this.usuarios.email, this.usuarios.senha).catch(e => {
