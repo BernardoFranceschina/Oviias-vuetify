@@ -75,13 +75,13 @@
 			},
 
 			login() {
-				firebase.auth().signInWithEmailAndPassword(this.emailInput, this.passwordInput).catch(e => {
+				firebase.auth().signInWithEmailAndPassword(this.usuarios.email, this.usuarios.senha).catch(e => {
                     alert(e.code);
                 })
 			},
 
 			signup() {
-				firebase.auth().createUserWithEmailAndPassword(this.emailInput, this.passwordInput).catch(e => {
+				firebase.auth().createUserWithEmailAndPassword(this.usuarios.email, this.usuarios.senha).catch(e => {
                     alert(e.code);
                 })
 			},

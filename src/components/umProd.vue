@@ -1,20 +1,7 @@
 <template>
 	<v-app dark>
-	
-		<v-toolbar>
-			<v-toolbar-title>Oviia's Departament Store</v-toolbar-title>
-			<v-spacer></v-spacer>
-			<v-btn icon>
-				<router-link to="/carinho" class="white--text">
-					<v-icon>mdi-cart</v-icon>
-				</router-link>
-			</v-btn>
-			<v-btn icon>
-				<router-link to="/login" class="white--text">
-					<v-icon>mdi-logout</v-icon>
-				</router-link>
-			</v-btn>
-		</v-toolbar>
+		
+		<main-toolbar :user="user"></main-toolbar>
 	
 		<v-layout row class="ma-5">
 			<v-flex xs4>
@@ -41,16 +28,31 @@
 </template>
 
 <script>
+
+	import mainToolbar from "./mainToolbar.vue"
+
 	export default {
+
+		components: {
+			mainToolbar
+		},
+
 		data() {
 			return {
 				DB: [],
-				prod: {}
+				prod: {},
+
+				user: "",
 			}
 		},
 
 		created() {
 			const key = this.$route.query.key;
+
+			firebase.auth().onAuthStateChanged(user => {
+				this.user = user;
+				this.isLogged = !!user;
+			})
 			
 			this.$bindAsArray("DB", firebase.database().ref("prods"), null, () => {
 				for (let i in this.DB) {

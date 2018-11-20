@@ -1,19 +1,8 @@
 <template>
 	<v-app dark>
-		<v-toolbar>
-			<v-toolbar-title>Oviia's Departament Store</v-toolbar-title>
-			<v-spacer></v-spacer>
-			<v-btn icon>
-				<router-link to="/carinho" class="white--text">
-					<v-icon>mdi-cart</v-icon>
-				</router-link>
-			</v-btn>
-			<v-btn icon>
-				<router-link to="/login" class="white--text">
-					<v-icon>mdi-logout</v-icon>
-				</router-link>
-			</v-btn>
-		</v-toolbar>
+
+		<main-toolbar :user="user"></main-toolbar>
+			
 		<v-container fluid grid-list-lg fill-height style="min-height: 434px">
 			<v-fade-transition mode="out-in">
 				<v-layout wrap>
@@ -29,7 +18,7 @@
 								<span class="subheading">R$ {{ prod.preco }}</span>
 								<v-spacer></v-spacer>
 								<v-btn flat>
-									<span class="subheading">Adicionar ao carinho</span>
+									<span class="subheading" @click="add_carinho()">Adicionar ao carinho</span>
 								</v-btn>
 							</v-card-title>
 						</v-card>
@@ -37,6 +26,18 @@
 				</v-layout>
 			</v-fade-transition>
 		</v-container>
+
+
+		<v-snackbar :color="snackParam.color" v-model="snackParam.active" :timeout="snackParam.timeout">
+			{{ snackParam.text }}
+			<router-link to="/login">
+				<v-btn flat>Logar</v-btn>
+			</router-link>
+			<v-btn flat @click.native="snackParam.active = false">Fechar</v-btn>
+
+		</v-snackbar>
+
+
 		<v-footer class="pa-3">
 			<v-spacer></v-spacer>
 			<div>&copy; {{ new Date().getFullYear() }}</div>
@@ -45,25 +46,58 @@
 </template>
 
 <script>
+	import mainToolbar from "./mainToolbar.vue";
+
 	export default {
+
+		components: {
+			mainToolbar,
+		},
+
 		data() {
 			return {
 				prods: [],
 
 				isLogged: false,
-				user: ""
+				user: "",
+
+				snackParam: {
+					timeout: 3000,
+					color: "primary",
+					text: "",
+					active: false
+				}
 			}
 		},
 
 		created() {
 			firebase.auth().onAuthStateChanged(user => {
-				if (user) {
-					this.isLogged = true;
-					this.user = user;
-				}
+				this.user = user;
+				this.isLogged = !!user;
 			});
 
 			this.$bindAsArray("prods", firebase.database().ref("prods"));
+		},
+
+		methods: {
+
+			showSnack(color="primary", time="3000", text="") {
+				const snak = this.snackParam;
+				snak.timeout = time;
+				snak.color = color;
+				snak.text = text;
+				snak.active = true;
+			},
+
+			add_carinho() {
+				if (!this.isLogged) {
+					this.showSnack("error", 3000, "Você precisa estar logado para fazer isso");
+				}
+			},
+
+			signOut() {
+				firebase.auth().signOut();
+			}
 		}
 	}
 </script>

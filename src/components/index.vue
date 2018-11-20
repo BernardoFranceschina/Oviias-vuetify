@@ -1,17 +1,7 @@
 <template>
 	<v-app dark>
-		<v-toolbar>
-			<v-toolbar-title>Oviia's Departament Store</v-toolbar-title>
-			<v-spacer></v-spacer>
-			<span>{{user ? user.displayName:"anom"}}</span>
-			<v-toolbar-items>
-				<v-btn icon>
-					<router-link to="/login" class="white--text">
-						<v-icon>mdi-login</v-icon>
-					</router-link>
-				</v-btn>
-			</v-toolbar-items>
-		</v-toolbar>
+
+		<main-toolbar :user="user"></main-toolbar>
 	
 		<v-parallax height="597" src="public/img2.jpg">
 			<v-layout align-center column justify-center>
@@ -32,20 +22,34 @@
 </template>
 
 <script>
+
+	import mainToolbar from "./mainToolbar.vue"
+
 	export default {
+
+		components: {
+			mainToolbar
+		},
+
 		data() {
 			return {
-				user: {
-					"displayName": "anom"
-				},
+				user: "",
+				isLogged: false,
 			}
 		},
 
 		created() {
 			firebase.auth().onAuthStateChanged(user => {
 				this.user = user;
+				this.isLogged = !!user;
 			})
 		},
+
+		methods: {
+			signOut() {
+				firebase.auth().signOut();
+			}
+		}
 
 
 	}
