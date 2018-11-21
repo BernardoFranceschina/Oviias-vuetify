@@ -4,7 +4,7 @@
 		<main-toolbar :user="user"></main-toolbar>
 
 		<br><br>
-		<v-container fluid grid-list-lg fill-height style="min-height: 434px">
+		<v-container app fluid grid-list-lg fill-height style="min-height: 434px">
 			<v-fade-transition mode="out-in">
 				<v-layout wrap>
 					<v-flex xs4 v-for="(prod, i) in prods" :key="i">
