@@ -10,7 +10,7 @@
 			</v-flex>
 			<v-layout column>
 				<h3 class="display-1">{{ prod.nome }}</h3>
-				<h6 class="subheading">{{ prod.preco }}</h6>
+				<h6 class="subheading">R$ {{ prod.preco }}</h6>
 				<br>
 				<h4 class="title"> {{ prod.descricao }} </h4>
 				<v-spacer></v-spacer>
@@ -23,7 +23,7 @@
 		<v-snackbar :color="snackParam.color" v-model="snackParam.active" :timeout="snackParam.timeout">
 			{{ snackParam.text }}
 			<router-link to="/login">
-				<v-btn flat>Logar</v-btn>
+				<v-btn flat>Entrar</v-btn>
 			</router-link>
 			<v-btn flat @click.native="snackParam.active = false">Fechar</v-btn>
 		</v-snackbar>
@@ -65,9 +65,6 @@
 			}
 		},
 		methods:{
-			signOut() {
-				firebase.auth().signOut()
-			},
 
 			showSnack(color="primary", time="3000", text="") {
 				const snak = this.snackParam;
