@@ -13,7 +13,7 @@
 								{{ prod.nome }}
 							</v-card-title>
 							<router-link :to="`/mostruario/produto?key=${prod['.key']}`" class="white--text">
-								<v-img contain :src="`public/${prod.imagem}`" height="125" class="grey darken-4"></v-img>
+								<v-img contain :src="`public/${prod.imagem}`" height="170" class="grey darken-4"></v-img>
 							</router-link>
 							<v-card-title class="title">
 								<span class="subheading">R$ {{ prod.preco }}</span>
