@@ -2,7 +2,7 @@
 	<v-app dark>
 
 		<main-toolbar :user="user"></main-toolbar>
-	
+		
 		<v-layout>
 			<v-flex xs12>
 				<v-parallax height="661" src="public/img2.jpg">

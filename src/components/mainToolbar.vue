@@ -17,7 +17,7 @@
 			</v-toolbar>
 			<v-divider></v-divider>
 	
-			<v-list two-line subheader>
+			<v-list two-line subheader v-if="isLogged">
 				<v-subheader>Nossa loja:</v-subheader>
 				<v-list-tile avatar>
 					<router-link class="white--text" to="/mostruario">
@@ -46,10 +46,27 @@
                     </v-list-tile>
                 </div>
 			</v-list>
+
+			<v-list two-line subheader v-else>
+				<v-subheader>Nossa Loja: </v-subheader>
+
+				<v-list-tile avatar>
+					<router-link class="white--text" to="/login">
+						<v-list-tile-content>
+							<v-list-tile-title>Logar</v-list-tile-title>
+							<v-list-tile-sub-title>Faça login para ter acesso a tudo</v-list-tile-sub-title>
+						</v-list-tile-content>
+					</router-link>
+				</v-list-tile>
+				
+			</v-list>
 		</v-navigation-drawer>
 	
 		<v-toolbar app>
-			<v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
+			<v-toolbar-side-icon v-if="!drawer" @click="drawer = true"></v-toolbar-side-icon>
+			<v-btn icon v-else @click="drawer = false">
+				<v-icon>mdi-menu-left</v-icon>
+			</v-btn>
 			<v-toolbar-title>Oviia's Departament Store</v-toolbar-title>
 			<v-spacer></v-spacer>
 	
