@@ -11,8 +11,8 @@
 				<v-form ref="form" v-model="valid">
 					<v-text-field :rules="ruleEnd" label="Endereço" v-model="usuario.endereco"></v-text-field>
 					<v-text-field :rules="ruleNome" label="Nome do titular do cartão" v-model="usuario.nomeCartao"></v-text-field>
-					<v-text-field :rules="ruleNmr" type="number" label="Número do cartão" :counter="16" v-model="usuario.nmrCartao"></v-text-field>
-					<v-text-field :rules="ruleSenha" type="number" label="Senha do cartão" :counter="4"></v-text-field>
+					<v-text-field :rules="ruleNmr" type="number" label="Número do cartão" v-model="usuario.nmrCartao"></v-text-field>
+					<v-text-field :rules="ruleSenha" type="number" label="Senha do cartão"></v-text-field>
 					<v-btn @click="confirmar() ,snackbar=true">Confirmar compra</v-btn>
 				</v-form>
 			</v-flex>
@@ -74,13 +74,19 @@
 		},
 		methods: {
 			confirmar(){
-				if(this.valid){
-					this.text = 'Compra efetuada com sucesso!';
-					this.color = 'success';
+				if(this.isLogged){
+					if(this.valid){
+						this.text = 'Compra efetuada com sucesso!';
+						this.color = 'success';
+					} else {
+						this.text = 'Complete todos os campos antes de confirmar a compra';
+						this.color = 'error';
+					}
 				} else {
-					this.text = 'Complete todos os campos antes de confirmar a compra';
+					this.text = 'Entre na sua conta para poder confirmar a compra';
 					this.color = 'error';
 				}
+				
 			
 			},
 			signOut() {

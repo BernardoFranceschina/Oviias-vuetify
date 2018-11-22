@@ -7,16 +7,7 @@
 			
 			<v-layout>
 				<v-flex xs12>
-					<v-toolbar color="grey darken-3">
-						<v-toolbar-title>Carinho</v-toolbar-title>
-					</v-toolbar>
-					<v-data-table :items="prods" class="elevation-1" hide-actions hide-headers>
-						<template slot="items" slot-scope="prods">
-							<td>{{ prods.item.nome }}</td>
-							<td class="text-xs-center">R$ {{ prods.item.preco }}</td>
-							<td class="text-xs-right">{{ prods.item.preco }}</td>
-						</template>
-					</v-data-table>
+					
 				</v-flex>
 			</v-layout>
 	
