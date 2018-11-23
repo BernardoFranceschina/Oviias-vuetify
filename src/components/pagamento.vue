@@ -78,6 +78,7 @@
 					if(this.valid){
 						this.text = 'Compra efetuada com sucesso!';
 						this.color = 'success';
+						this.$refs.form.reset();
 					} else {
 						this.text = 'Complete todos os campos antes de confirmar a compra';
 						this.color = 'error';
@@ -87,7 +88,7 @@
 					this.color = 'error';
 				}
 				
-			
+				
 			},
 			signOut() {
 				firebase.auth().signOut();

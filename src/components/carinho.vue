@@ -27,6 +27,12 @@
 					</v-alert>
 						
 					</v-data-table>
+
+					<router-link to="/carinho/pagamento">
+						<v-btn v-if="cart.length > 0">
+							Finalizar compra
+						</v-btn>
+					</router-link>
 					
 				</v-flex>
 			</v-layout>
