@@ -16,13 +16,15 @@
 
 					<template slot="items" slot-scope="props">
 
-
 						<td>{{ getName(props.item.id) }}</td>
 						<td>{{ props.item.quant }}</td>
 						<td>{{ getAllValue(props.item.id, props.item.quant) }}</td>
 
-						
 					</template>
+
+					<v-alert type="error" slot="no-data" :value="true">
+						Nenhum produto no carrinnho
+					</v-alert>
 						
 					</v-data-table>
 					
