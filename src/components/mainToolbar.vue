@@ -71,13 +71,16 @@
 			<v-spacer></v-spacer>
 	
 			<span v-if="!isLogged">Não Logado</span>
-	
-			<v-btn icon v-if="isLogged">
-				<router-link to="/carinho" class="white--text">
-					<v-icon>mdi-cart</v-icon>
+			
+			<v-btn v-if="isLogged" icon>
+				<router-link class="white--text" to="/carinho">
+					<v-badge left>
+						<span slot="badge">{{ cartLen }}</span> <!--slot can be any component-->
+						<v-icon>mdi-cart</v-icon>
+					</v-badge>
 				</router-link>
 			</v-btn>
-	
+
 			<v-btn icon v-if="!isLogged" title="Entrar">
 				<router-link to="/login" class="white--text">
 					<v-icon>mdi-login</v-icon>
@@ -95,13 +98,16 @@
 <script>
 	export default {
 		name: "mainToolbar",
-        props: ["user"],
-        
+		props: ["user"],
+		
 		data() {
 			return {
 				administrador2: false,
 				isLogged: false,
 				drawer: false,
+
+				cart: [],
+				cartLen: 0
 			}
 		},
 	
@@ -114,15 +120,25 @@
         
 		watch: {
 			user() {
-                this.isLogged = !!this.user;
+
+				this.isLogged = !!this.user;
                 if (!this.user) return;
                 if (!this.user.uid) { 
-
 					return;
 				} else if (this.user.uid === "3WCwuGgzE7fCVehpxaFCzfLauVj2" || this.user.uid === "Ag711hRc0lN4sfhxlSf90XCX1PC3") {
 					this.administrador2 = true;
 				}
-            },
+
+				this.$bindAsArray("cart", firebase.database().ref("cart").child(this.user.uid));
+
+			},
+			
+			cart() {
+				this.cartLen = 0;
+				for (const prod of this.cart) {
+					this.cartLen += prod.quant
+				}
+			}
             
 		}
 	}
