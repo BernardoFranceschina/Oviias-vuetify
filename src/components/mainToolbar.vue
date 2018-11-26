@@ -75,7 +75,7 @@
 			<v-btn v-if="isLogged" icon>
 				<router-link class="white--text" to="/carinho">
 					<v-badge left>
-						<span slot="badge">{{ cartLen }}</span> <!--slot can be any component-->
+						<span slot="badge">{{ cartLen }}</span>
 						<v-icon>mdi-cart</v-icon>
 					</v-badge>
 				</router-link>
