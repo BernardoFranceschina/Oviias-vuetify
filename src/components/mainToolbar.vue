@@ -20,14 +20,6 @@
 			<v-list two-line subheader v-if="isLogged">
 				<v-subheader>Nossa loja:</v-subheader>
 				<v-list-tile avatar>
-					<router-link class="white--text" to="/">
-						<v-list-tile-content>
-							<v-list-tile-title>Página inicial</v-list-tile-title>
-							<v-list-tile-sub-title></v-list-tile-sub-title>
-						</v-list-tile-content>
-					</router-link>
-				</v-list-tile>
-				<v-list-tile avatar>
 					<router-link class="white--text" to="/mostruario">
 						<v-list-tile-content>
 							<v-list-tile-title>Mostruário</v-list-tile-title>
