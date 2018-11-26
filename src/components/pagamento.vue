@@ -79,6 +79,7 @@
 						this.text = 'Compra efetuada com sucesso!';
 						this.color = 'success';
 						this.$refs.form.reset();
+						firebase.database().ref("cart").child(this.user.uid).remove();
 					} else {
 						this.text = 'Complete todos os campos antes de confirmar a compra';
 						this.color = 'error';
