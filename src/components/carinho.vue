@@ -18,13 +18,18 @@
 
 						<td>{{ getName(props.item.id) }}</td>
 						<td>{{ props.item.quant }}</td>
-						<td>{{ getAllValue(props.item.id, props.item.quant) }}</td>
+						<td>{{ getProdValue(props.item.id, props.item.quant) }}</td>
 
 					</template>
 
 					<v-alert type="error" slot="no-data" :value="true">
 						Nenhum produto no carrinnho
 					</v-alert>
+
+
+					<div slot="footer" class="right">
+						<p>Valor total da compra: {{ getAllValue() }}</p>
+					</div>
 						
 					</v-data-table>
 					
@@ -98,12 +103,25 @@
 				}
 			},
 
-			getAllValue(key, quant) {
+			getProdValue(key, quant) {
 				for (const prod of this.prods) {
 					if (prod[".key"] === key) {
 						return prod.preco * quant;
 					}
 				}
+			},
+
+			getAllValue() {
+				let val = 0;
+				for (const item of this.cart) {
+					for (const prod of this.prods) {
+						if (item.id === prod[".key"]) {
+							val += item.quant * prod.preco;
+						}
+					}
+				}
+
+				return val;
 			}
 		}
 	}
